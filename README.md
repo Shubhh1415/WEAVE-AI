@@ -154,8 +154,8 @@ Upcoming:
 
 # 👥 Team
 
-| Name | Role | Branch |
-|------|------|--------|
+| Name | Branch |
+|------|------|
 | **Shubh Lakhmani** | AI & DS |
 | **Chhavi Mishra** | AI & DS |
 | **Pritha** | CSE |
