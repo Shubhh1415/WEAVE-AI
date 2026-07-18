@@ -1,37 +1,22 @@
-import requests
-
-API_URL = "https://remotive.com/api/remote-jobs"
+from services.job_api import fetch_jobs
 
 
-def search_jobs(keyword, location=""):
+def search_jobs(keyword):
+    """
+    Fetch jobs from API and format them for the UI.
+    """
 
-    try:
+    jobs = fetch_jobs(keyword)
 
-        response = requests.get(API_URL)
+    results = []
 
-        data = response.json()
+    for job in jobs:
 
-        jobs = data["jobs"]
+        results.append({
+            "title": job.get("title") or "Job Title Not Available",
+            "company": job.get("companyName") or "Company Not Available",
+            "location": job.get("location") or "Remote / Not Specified",
+            "url": job.get("url") or ""
+        })
 
-        filtered = []
-
-        for job in jobs:
-
-            if keyword.lower() in job["title"].lower():
-
-                if location == "" or location.lower() in job["candidate_required_location"].lower():
-
-                    filtered.append(
-                        {
-                            "title": job["title"],
-                            "company": job["company_name"],
-                            "location": job["candidate_required_location"],
-                            "url": job["url"]
-                        }
-                    )
-
-        return filtered
-
-    except Exception as e:
-
-        return []
+    return results

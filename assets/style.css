@@ -1,0 +1,59 @@
+/* ---------- Background ---------- */
+
+.stApp{
+    background:#0F172A;
+    color:white;
+}
+
+/* ---------- Hero ---------- */
+
+.hero{
+    background:linear-gradient(135deg,#2563EB,#7C3AED);
+    border-radius:20px;
+    padding:35px;
+    margin-bottom:30px;
+    text-align:center;
+}
+
+.hero h1{
+    color:white;
+    font-size:40px;
+    margin-bottom:8px;
+}
+
+.hero p{
+    color:#E2E8F0;
+    font-size:18px;
+}
+
+/* ---------- Metric Cards ---------- */
+
+.metric-card{
+    background:#1E293B;
+    border-radius:18px;
+    padding:20px;
+    text-align:center;
+    border:1px solid rgba(255,255,255,.08);
+    transition:.3s;
+    margin-bottom:15px;
+}
+
+.metric-card:hover{
+    transform:translateY(-5px);
+    border:1px solid #3B82F6;
+}
+
+.metric-icon{
+    font-size:30px;
+}
+
+.metric-title{
+    color:#CBD5E1;
+    font-size:16px;
+}
+
+.metric-value{
+    color:white;
+    font-size:34px;
+    font-weight:bold;
+}
