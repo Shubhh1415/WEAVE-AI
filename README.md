@@ -31,26 +31,69 @@ WEAVE-AI aims to simplify this process by providing a single platform where user
 
 ---
 
-# ✨ Current Features
+## ✨ Current Features
 
-- Interactive Streamlit Dashboard
-- Job Search Interface
-- Saved Jobs Module (Under Development)
-- About Section
-- Modular Project Architecture
-- GitHub Version Control
+### 💼 Career Features
+- 🔍 AI-powered Job Search
+- ❤️ Save & Manage Favorite Jobs
+- 🗑️ Remove Saved Jobs
+- 💾 Persistent SQLite Database
+
+### 🤖 AI Features
+- AI Career Assistant powered by Google Gemini
+- Resume Analysis with personalized feedback
+- Resume Strengths & Improvement Suggestions
+- Download Resume Analysis Report (PDF)
+
+### 📚 Knowledge Base (RAG)
+- Upload PDF & DOCX documents
+- Automatic document text extraction
+- Intelligent text chunking
+- Persistent ChromaDB vector database
+- Semantic document search
+- AI-powered Question Answering over uploaded documents
+
+### 🎨 User Experience
+- Modern Streamlit Interface
+- Responsive Sidebar Navigation
+- Modular Component Architecture
+- Dark Theme UI
 
 ---
 
-# 🚀 Planned Features
+## 🚀 Planned Features
 
-- AI Career Assistant
-- Job Search using Public Job APIs
-- Smart Job Filtering
-- Resume Analysis
-- Company Research
-- Job Bookmarking
-- SQLite Database Integration
+### 🤖 AI Enhancements
+- Mock Interview Simulator
+- ATS Resume Score Checker
+- Resume vs Job Description Matching
+- AI Cover Letter Generator
+- Personalized Career Roadmap
+- Skill Gap Analysis
+
+### 📚 Advanced RAG
+- Multi-document Knowledge Base
+- Source Citations
+- Document Management (View/Delete)
+- Better Retrieval & Ranking
+- Chat History
+- Knowledge Base Categories
+
+### 🎨 UI Improvements
+- Premium SaaS Dashboard
+- Interactive Analytics Cards
+- Glassmorphism Design
+- Better Chat Interface
+- Dashboard Statistics
+- Loading Animations
+
+### ☁️ Future Enhancements
+- User Authentication
+- Cloud Database Support
+- Resume Version History
+- Export Chat & Reports
+- Admin Dashboard
+- Deployment on Streamlit Cloud
 
 ---
 
@@ -134,21 +177,55 @@ streamlit run app.py
 
 # 📌 Project Status
 
-🚧 **Currently under active development.**
+### ✅ Completed
+- AI Career Assistant (Google Gemini)
+- AI Resume Analyzer
+- Resume Analysis PDF Report Generation
+- Job Search System
+- Save & Manage Jobs
+- SQLite Database Integration
+- Modern Streamlit Dashboard
+- Modular Project Architecture
+- Document Upload (PDF & DOCX)
+- Document Text Extraction
+- ChromaDB Integration
+- Persistent Vector Database
+- Basic Knowledge Base Interface
 
-Completed:
-- Project Initialization
-- Repository Setup
-- Streamlit Dashboard
-- Modular Folder Structure
+---
 
-In Progress:
-- Job Search Integration
+### 🚧 In Progress
+- RAG (Retrieval-Augmented Generation) Pipeline
+- AI Document Question Answering
+- Premium SaaS UI Redesign
+- Improved Knowledge Base Experience
+- Enhanced Error Handling & Performance
 
-Upcoming:
-- AI Integration
-- Database Integration
-- Deployment
+---
+
+### ⏳ Upcoming
+- Multi-Document Knowledge Base
+- Source Citations for AI Responses
+- Resume vs Job Description Matching
+- ATS Resume Score Checker
+- AI Mock Interview
+- AI Cover Letter Generator
+- Personalized Career Roadmap
+- Skill Gap Analysis
+- Dashboard Analytics
+- User Authentication
+- Cloud Deployment
+- Admin Dashboard
+
+---
+
+### 🚀 Overall Progress
+
+**Track A:** ✅ 100% Complete
+
+**Track B:** 🚧 ~80% Complete
+
+**Overall Project:** **~85% Complete**
 
 ---
 
