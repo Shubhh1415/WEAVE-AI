@@ -33,68 +33,75 @@ WEAVE-AI aims to simplify this process by providing a single platform where user
 
 ## ✨ Current Features
 
-### 💼 Career Features
-- 🔍 AI-powered Job Search
-- ❤️ Save & Manage Favorite Jobs
-- 🗑️ Remove Saved Jobs
-- 💾 Persistent SQLite Database
-
 ### 🤖 AI Features
 - AI Career Assistant powered by Google Gemini
-- Resume Analysis with personalized feedback
-- Resume Strengths & Improvement Suggestions
-- Download Resume Analysis Report (PDF)
+- AI-powered Resume Analysis
+- Personalized Resume Feedback & Suggestions
+- Company Research with AI-generated Career Insights
+- Knowledge Base with RAG Foundation
 
-### 📚 Knowledge Base (RAG)
-- Upload PDF & DOCX documents
-- Automatic document text extraction
-- Intelligent text chunking
-- Persistent ChromaDB vector database
-- Semantic document search
-- AI-powered Question Answering over uploaded documents
+### 💼 Career Features
+- Job Search
+- Saved Jobs Management
+- Resume Parsing (PDF & DOCX)
+- Company Information Lookup
 
-### 🎨 User Experience
-- Modern Streamlit Interface
+### 📚 Knowledge Base
+- Upload PDF Documents
+- Upload DOCX Documents
+- Automatic Document Processing
+- Text Chunking
+- ChromaDB Vector Database
+- Semantic Search Foundation
+
+### 💾 Data Management
+- SQLite Database Integration
+- Persistent Saved Jobs
+- Persistent Vector Store
+
+### 🎨 User Interface
+- Modern Streamlit Dashboard
 - Responsive Sidebar Navigation
-- Modular Component Architecture
-- Dark Theme UI
-
+- Modular Project Architecture
+- Dark Theme Interface
 ---
 
 ## 🚀 Planned Features
 
 ### 🤖 AI Enhancements
-- Mock Interview Simulator
 - ATS Resume Score Checker
 - Resume vs Job Description Matching
 - AI Cover Letter Generator
+- Mock Interview Preparation
 - Personalized Career Roadmap
 - Skill Gap Analysis
 
-### 📚 Advanced RAG
-- Multi-document Knowledge Base
+### 📚 Advanced Knowledge Base
+- Multi-Document Support
 - Source Citations
-- Document Management (View/Delete)
-- Better Retrieval & Ranking
-- Chat History
-- Knowledge Base Categories
+- Document Management
+- Conversation Memory
+- Advanced Semantic Retrieval
 
-### 🎨 UI Improvements
+### 💼 Career Features
+- Unified Job Search
+- Intelligent Job Matching
+- Company Comparison
+- Career Recommendation Engine
+- Learning Resource Recommendations
+
+### 🎨 User Experience
 - Premium SaaS Dashboard
-- Interactive Analytics Cards
-- Glassmorphism Design
-- Better Chat Interface
-- Dashboard Statistics
-- Loading Animations
+- Interactive Analytics
+- Better Visualizations
+- Mobile-Friendly Interface
+- Enhanced Performance
 
-### ☁️ Future Enhancements
+### ☁️ Deployment
+- Cloud Deployment
 - User Authentication
-- Cloud Database Support
-- Resume Version History
-- Export Chat & Reports
 - Admin Dashboard
-- Deployment on Streamlit Cloud
-
+- Usage Analytics
 ---
 
 # 🏗 System Architecture
@@ -175,57 +182,45 @@ streamlit run app.py
 
 ---
 
-# 📌 Project Status
+## 📈 Project Status
 
 ### ✅ Completed
-- AI Career Assistant (Google Gemini)
-- AI Resume Analyzer
-- Resume Analysis PDF Report Generation
+- AI Career Assistant
 - Job Search System
-- Save & Manage Jobs
-- SQLite Database Integration
-- Modern Streamlit Dashboard
-- Modular Project Architecture
-- Document Upload (PDF & DOCX)
-- Document Text Extraction
+- Saved Jobs Management
+- Resume Analyzer
+- Resume Parsing (PDF & DOCX)
+- Resume Analysis PDF Report
+- Company Research Module
+- AI-powered Company Insights
+- Company Information Lookup
+- Knowledge Base Foundation
 - ChromaDB Integration
-- Persistent Vector Database
-- Basic Knowledge Base Interface
+- SQLite Database
+- Modular Project Architecture
+- Gemini AI Integration
 
 ---
 
 ### 🚧 In Progress
-- RAG (Retrieval-Augmented Generation) Pipeline
-- AI Document Question Answering
-- Premium SaaS UI Redesign
-- Improved Knowledge Base Experience
-- Enhanced Error Handling & Performance
+- Unified Job Search
+- Job Matching Engine
+- End-to-End RAG Workflow Optimization
+- Knowledge Base Improvements
+- UI & Performance Enhancements
 
 ---
 
-### ⏳ Upcoming
-- Multi-Document Knowledge Base
-- Source Citations for AI Responses
+### ⏳ Planned
 - Resume vs Job Description Matching
 - ATS Resume Score Checker
-- AI Mock Interview
-- AI Cover Letter Generator
-- Personalized Career Roadmap
 - Skill Gap Analysis
+- AI Cover Letter Generator
+- Mock Interview Assistant
+- Personalized Career Roadmap
 - Dashboard Analytics
 - User Authentication
 - Cloud Deployment
-- Admin Dashboard
-
----
-
-### 🚀 Overall Progress
-
-**Track A:** ✅ 100% Complete
-
-**Track B:** 🚧 ~80% Complete
-
-**Overall Project:** **~85% Complete**
 
 ---
 
