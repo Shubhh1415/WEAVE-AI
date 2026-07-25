@@ -2,6 +2,7 @@ import streamlit as st
 from services.gemini_service import ask_ai
 
 from tools.job_search import search_jobs
+from services.company_service import get_company_info
 from services.document_loader import load_document, split_document
 from services.vector_store import add_documents
 from services.rag_service import ask_rag
@@ -73,6 +74,7 @@ with st.sidebar:
         [
             "🏠 Dashboard",
             "🔍 Job Search",
+            "🏢 Company Research",
             "📚 Knowledge Base",
             "📄  Resume Analyzer",
             "❤️ Saved Jobs",
@@ -225,6 +227,47 @@ elif page == "🔍 Job Search":
                         st.success("Job saved successfully!")
 
                 st.divider()
+
+
+# -----------------------------
+# COMPANY RESEARCH
+# -----------------------------
+
+elif page == "🏢 Company Research":
+
+    st.title("🏢 Company Research")
+
+st.write(
+    "Learn about any company with AI-powered career insights."
+)
+
+company_name = st.text_input(
+    "Enter Company Name",
+    placeholder="Google, Microsoft, Infosys..."
+)
+
+if st.button("🔍 Research Company"):
+
+    if company_name.strip() == "":
+        st.warning("Please enter a company name.")
+
+    else:
+
+        with st.spinner("Researching company..."):
+
+            result = get_company_info(company_name)
+
+            if result["success"]:
+
+                st.success("Research Complete")
+
+                st.markdown(result["response"])
+
+            else:
+
+                st.error(result["error"])
+
+
 
 
 # -----------------------------
