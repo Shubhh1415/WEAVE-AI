@@ -1,8 +1,12 @@
 import streamlit as st
 from services.gemini_service import ask_ai
 
-from tools.job_search import search_jobs
+from services.job_match_service import match_resume_with_job
+import re
 from services.company_service import get_company_info
+from services.pdf_service import generate_match_report_pdf
+from services.unified_job_api import search_all_jobs
+from utils.ui_helper import display_match_report
 from services.document_loader import load_document, split_document
 from services.vector_store import add_documents
 from services.rag_service import ask_rag
@@ -47,7 +51,8 @@ create_tables()
 
 if "jobs" not in st.session_state:
     st.session_state.jobs = []
-
+if "resume_text" not in st.session_state:
+    st.session_state.resume_text = ""
 if "keyword" not in st.session_state:
     st.session_state.keyword = ""
 if "show_ai" not in st.session_state:
@@ -178,7 +183,7 @@ elif page == "🔍 Job Search":
 
             with st.spinner("Searching Jobs..."):
 
-                st.session_state.jobs = search_jobs(keyword)
+                st.session_state.jobs = search_all_jobs(keyword)
 
     if len(st.session_state.jobs) == 0:
 
@@ -225,6 +230,38 @@ elif page == "🔍 Job Search":
                         )
 
                         st.success("Job saved successfully!")
+
+                    if st.button(
+                          "⭐ Match Resume",
+                           key=f"match_{job['title']}_{job['company']}"
+                        ):
+
+                           if not st.session_state.resume_text:
+
+                            st.warning("Please analyze your resume first.")
+
+                           else:
+
+                                with st.spinner("Matching Resume with Job..."):
+
+                                     result = match_resume_with_job(
+                                     st.session_state.resume_text,
+                                       job
+                                )
+
+                                st.success("✅ Match Analysis Complete")
+                                
+                                display_match_report(result)
+                                
+                                pdf_file = generate_match_report_pdf(result)
+
+                                with open(pdf_file, "rb") as f:
+                                    st.download_button(
+                                    label="📄 Download Match Report",
+                                    data=f, 
+                                  file_name="Resume_Match_Report.pdf",
+                                  mime="application/pdf"
+                                 )
 
                 st.divider()
 
@@ -395,6 +432,8 @@ elif page == "📄  Resume Analyzer":
             with st.spinner("Analyzing your resume..."):
 
                 resume_text = extract_resume_text(uploaded_file)
+
+                st.session_state.resume_text = resume_text
 
                 if not resume_text.strip():
 
