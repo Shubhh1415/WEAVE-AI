@@ -232,18 +232,6 @@ streamlit run app.py
 
 ---
 
-# 📸 Screenshots
-
-Add screenshots of:
-
-- 🏠 Dashboard
-- 📄 Resume Analyzer
-- 💼 Job Search
-- 🎯 Resume Match Report
-- 🏢 Company Research
-- 🤖 AI Career Assistant
-
----
 
 # 📈 Current Project Status
 
