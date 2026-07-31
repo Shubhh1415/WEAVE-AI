@@ -2,14 +2,18 @@
 
 <div align="center">
 
-### Weaving Opportunities with Artificial Intelligence
+## 🚀 Your AI-Powered Career Assistant
 
-**An AI-Powered Career Assistant developed as part of the Capabl AI Agent Internship (Track A).**
+**An intelligent career assistant that helps users analyze resumes, search jobs, match resumes with job descriptions, research companies, and receive AI-powered career guidance.**
+
+Developed as part of the **Capabl AI Agent Internship (Track A)**.
 
 ![Python](https://img.shields.io/badge/Python-3.12-blue?style=for-the-badge&logo=python)
-![Streamlit](https://img.shields.io/badge/Streamlit-Framework-red?style=for-the-badge&logo=streamlit)
-![Status](https://img.shields.io/badge/Status-In%20Development-orange?style=for-the-badge)
-![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
+![Streamlit](https://img.shields.io/badge/Streamlit-red?style=for-the-badge&logo=streamlit)
+![Gemini](https://img.shields.io/badge/Google-Gemini-blue?style=for-the-badge&logo=google)
+![LangChain](https://img.shields.io/badge/LangChain-AI-green?style=for-the-badge)
+![Status](https://img.shields.io/badge/Status-Active-success?style=for-the-badge)
+![License](https://img.shields.io/badge/License-MIT-brightgreen?style=for-the-badge)
 
 </div>
 
@@ -17,110 +21,124 @@
 
 # 📖 Overview
 
-WEAVE-AI is an intelligent career assistant that helps users discover job opportunities through an interactive web application.
+WEAVE-AI is an AI-powered career assistant designed to simplify the job search process while helping users improve their resumes and career readiness.
 
-The project is being developed during the **Capabl AI Agent Internship (Track A)** using Python and Streamlit while following clean software engineering principles, modular architecture, and version control best practices.
-
----
-
-# 🎯 Problem Statement
-
-Searching for relevant job opportunities often requires visiting multiple platforms, applying filters repeatedly, and manually organizing useful openings.
-
-WEAVE-AI aims to simplify this process by providing a single platform where users can search opportunities and gradually expand the experience with AI-powered career assistance.
+The application combines **Google Gemini**, **LangChain**, **RAG (Retrieval-Augmented Generation)**, **SQLite**, and **ChromaDB** to provide intelligent career assistance through a clean Streamlit interface.
 
 ---
 
-## ✨ Current Features
+# ✨ Key Features
 
-### 🤖 AI Features
-- AI Career Assistant powered by Google Gemini
-- AI-powered Resume Analysis
-- Personalized Resume Feedback & Suggestions
-- Company Research with AI-generated Career Insights
-- Knowledge Base with RAG Foundation
+## 📄 Resume Analyzer
 
-### 💼 Career Features
-- Job Search
-- Saved Jobs Management
-- Resume Parsing (PDF & DOCX)
-- Company Information Lookup
+- Upload PDF or DOCX resumes
+- AI-powered resume analysis
+- ATS-style feedback
+- Resume strengths & weaknesses
+- Skill improvement suggestions
+- Resume report download (PDF)
 
-### 📚 Knowledge Base
+---
+
+## 🎯 Resume Match Engine
+
+Compare your resume with any job opening and receive:
+
+- Resume Match Score
+- Matching Skills
+- Missing Skills
+- Personalized Suggestions
+- Final Recommendation
+- Download Match Report as PDF
+
+---
+
+## 💼 Smart Job Search
+
+- Unified Job Search
+- Search remote jobs
+- Save favourite jobs
+- Multiple job API integration
+- SQLite-based saved jobs
+
+---
+
+## 🏢 Company Research
+
+Research any company using AI.
+
+Provides:
+
+- Company Overview
+- Required Skills
+- Career Opportunities
+- Interview Tips
+- Industry Insights
+
+---
+
+## 🤖 AI Career Assistant
+
+Ask career-related questions including:
+
+- Resume improvement
+- Career guidance
+- Learning roadmap
+- Interview preparation
+- Skill recommendations
+
+---
+
+## 📚 Knowledge Base (RAG)
+
 - Upload PDF Documents
 - Upload DOCX Documents
 - Automatic Document Processing
 - Text Chunking
 - ChromaDB Vector Database
-- Semantic Search Foundation
+- Semantic Search
+- AI Knowledge Retrieval
 
-### 💾 Data Management
-- SQLite Database Integration
-- Persistent Saved Jobs
-- Persistent Vector Store
-
-### 🎨 User Interface
-- Modern Streamlit Dashboard
-- Responsive Sidebar Navigation
-- Modular Project Architecture
-- Dark Theme Interface
 ---
 
-## 🚀 Planned Features
+# 🚀 Project Highlights
 
-### 🤖 AI Enhancements
-- ATS Resume Score Checker
-- Resume vs Job Description Matching
-- AI Cover Letter Generator
-- Mock Interview Preparation
-- Personalized Career Roadmap
-- Skill Gap Analysis
+- Google Gemini Integration
+- Resume Parsing
+- Resume Analyzer
+- Resume vs Job Matching
+- Company Research
+- AI Career Chat
+- Retrieval-Augmented Generation (RAG)
+- SQLite Database
+- ChromaDB Vector Store
+- PDF Report Generation
+- Modular Architecture
 
-### 📚 Advanced Knowledge Base
-- Multi-Document Support
-- Source Citations
-- Document Management
-- Conversation Memory
-- Advanced Semantic Retrieval
-
-### 💼 Career Features
-- Unified Job Search
-- Intelligent Job Matching
-- Company Comparison
-- Career Recommendation Engine
-- Learning Resource Recommendations
-
-### 🎨 User Experience
-- Premium SaaS Dashboard
-- Interactive Analytics
-- Better Visualizations
-- Mobile-Friendly Interface
-- Enhanced Performance
-
-### ☁️ Deployment
-- Cloud Deployment
-- User Authentication
-- Admin Dashboard
-- Usage Analytics
 ---
 
 # 🏗 System Architecture
 
 ```text
-                  User
-                    │
-                    ▼
-        Streamlit Web Application
-                    │
-                    ▼
-          Application Controller
-                    │
-      ┌─────────────┼─────────────┐
-      ▼             ▼             ▼
- Job Search     AI Assistant    Database
-      │                           │
-      ▼                           ▼
- Public Job API               SQLite
+                    User
+                      │
+                      ▼
+             Streamlit Web App
+                      │
+        ┌─────────────┼──────────────┐
+        ▼             ▼              ▼
+ Resume Analyzer  Job Search   Company Research
+        │             │              │
+        └─────────────┼──────────────┘
+                      ▼
+               Gemini AI Service
+                      │
+        ┌─────────────┴─────────────┐
+        ▼                           ▼
+     RAG Engine               SQLite Database
+        │
+        ▼
+   ChromaDB Vector Store
 ```
 
 ---
@@ -130,21 +148,21 @@ WEAVE-AI aims to simplify this process by providing a single platform where user
 ```text
 WEAVE-AI/
 │
-├── app.py
-├── README.md
-├── requirements.txt
-├── .env
-├── .gitignore
-│
 ├── assets/
 ├── components/
 ├── config/
 ├── database/
 ├── docs/
+├── models/
 ├── pages/
 ├── services/
 ├── tools/
-└── utils/
+├── utils/
+│
+├── app.py
+├── requirements.txt
+├── README.md
+└── .gitignore
 ```
 
 ---
@@ -152,81 +170,123 @@ WEAVE-AI/
 # 🛠 Tech Stack
 
 | Category | Technology |
-|----------|------------|
+|-----------|------------|
 | Language | Python |
-| Framework | Streamlit |
-| Version Control | Git & GitHub |
-| Database | SQLite *(Planned)* |
-| AI Model | Google Gemini *(Planned)* |
-| AI Framework | LangChain *(Planned)* |
+| Frontend | Streamlit |
+| LLM | Google Gemini 3.5 Flash |
+| AI Framework | LangChain |
+| Vector Database | ChromaDB |
+| Database | SQLite |
+| PDF Reports | ReportLab |
+| Resume Parsing | PyPDF2, python-docx |
 | API Integration | Requests |
-| Data Handling | Pandas |
+| Version Control | Git & GitHub |
 
 ---
 
 # ⚙ Installation
 
+Clone the repository
+
 ```bash
 git clone https://github.com/Shubhh1415/WEAVE-AI.git
+```
 
+Move into the project
+
+```bash
 cd WEAVE-AI
+```
 
+Create virtual environment
+
+```bash
 python -m venv venv
+```
 
+Activate environment
+
+Windows
+
+```bash
 venv\Scripts\activate
+```
 
+Install dependencies
+
+```bash
 pip install -r requirements.txt
+```
 
+Create a `.env` file
+
+```env
+GEMINI_API_KEY=YOUR_API_KEY
+```
+
+Run the application
+
+```bash
 streamlit run app.py
 ```
 
 ---
 
-## 📈 Project Status
+# 📸 Screenshots
 
-### ✅ Completed
+Add screenshots of:
+
+- 🏠 Dashboard
+- 📄 Resume Analyzer
+- 💼 Job Search
+- 🎯 Resume Match Report
+- 🏢 Company Research
+- 🤖 AI Career Assistant
+
+---
+
+# 📈 Current Project Status
+
+## ✅ Completed
+
 - AI Career Assistant
-- Job Search System
-- Saved Jobs Management
-- Resume Analyzer
 - Resume Parsing (PDF & DOCX)
-- Resume Analysis PDF Report
-- Company Research Module
-- AI-powered Company Insights
-- Company Information Lookup
-- Knowledge Base Foundation
-- ChromaDB Integration
+- Resume Analyzer
+- Resume Report PDF
+- Smart Job Search
+- Saved Jobs
+- Company Research
+- AI Company Insights
+- Resume Match Engine
+- Match Score System
+- Match Report PDF
+- Google Gemini Integration
+- LangChain Integration
+- ChromaDB Vector Database
+- RAG Knowledge Base
 - SQLite Database
-- Modular Project Architecture
-- Gemini AI Integration
+- Modular Architecture
 
 ---
 
-### 🚧 In Progress
-- Unified Job Search
-- Job Matching Engine
-- End-to-End RAG Workflow Optimization
-- Knowledge Base Improvements
-- UI & Performance Enhancements
+# 🔮 Future Enhancements
 
----
-
-### ⏳ Planned
-- Resume vs Job Description Matching
-- ATS Resume Score Checker
-- Skill Gap Analysis
 - AI Cover Letter Generator
 - Mock Interview Assistant
-- Personalized Career Roadmap
-- Dashboard Analytics
+- LinkedIn Profile Analysis
+- Skill Gap Visualizer
+- Career Roadmap Generator
 - User Authentication
 - Cloud Deployment
+- Dashboard Analytics
+- Resume Version History
+- Learning Resource Recommendations
 
 ---
 
 # 👥 Team
 
-| Name | Branch |
+| Name | Role |
 |------|------|
 | **Shubh Lakhmani** | AI & DS |
 | **Chhavi Mishra** | AI & DS |
@@ -238,22 +298,22 @@ streamlit run app.py
 
 # 🤝 Contributing
 
-This project is being developed as part of the Capabl AI Agent Internship.
+Contributions, suggestions, and improvements are welcome.
 
-Suggestions, improvements, and contributions are always welcome through pull requests and issue discussions.
+Feel free to fork the repository, create a feature branch, and submit a pull request.
 
 ---
 
 # 📄 License
 
-This project is licensed under the MIT License.
+This project is licensed under the **MIT License**.
 
 ---
 
 <div align="center">
 
-### ⭐ If you like this project, consider giving it a star.
+## ⭐ If you found this project useful, consider giving it a Star!
 
-**Built with ❤️ by Team WEAVE**
+### Built with ❤️ by Team WEAVE
 
 </div>
