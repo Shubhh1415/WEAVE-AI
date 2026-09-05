@@ -1,12 +1,12 @@
-# CareerPilot AI
-
-An AI-powered Career Assistant developed during the Capabl AI Agent Internship.
-
-## Features
-
-- Job Search
-- AI Assistant
-- Job Filtering
-- Saved Jobs
-
-More features coming soon.
+streamlit
+google-genai
+python-dotenv
+requests
+beautifulsoup4
+pdfplumber
+python-docx
+reportlab
+langchain
+langchain-community
+langchain-chroma
+chromadb

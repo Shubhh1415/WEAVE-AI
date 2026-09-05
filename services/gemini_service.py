@@ -1,31 +1,65 @@
-import os
-from dotenv import load_dotenv
+import time
 from google import genai
 
-load_dotenv()
+from config.settings import API_KEY
 
-API_KEY = os.getenv("GEMINI_API_KEY")
-
-if not API_KEY:
-    raise ValueError("GEMINI_API_KEY not found in .env")
 
 client = genai.Client(api_key=API_KEY)
 
 MODEL = "models/gemini-3.5-flash"
 
 
-def ask_ai(prompt: str) -> str:
+def ask_ai(prompt, max_retries=3):
     """
-    Send prompt to Gemini.
+    Send a prompt to Gemini with automatic retry handling
+    for temporary API/service failures.
     """
 
-    response = client.models.generate_content(
-        model=MODEL,
-        contents=prompt
-    )
+    last_error = None
 
-    return response.text
+    for attempt in range(max_retries):
 
+        try:
 
-def get_gemini_response(prompt: str) -> str:
+            response = client.models.generate_content(
+                model=MODEL,
+                contents=prompt
+            )
+
+            return response.text
+
+        except Exception as e:
+
+            last_error = e
+
+            error_text = str(e).lower()
+
+            # Retry temporary Gemini availability/rate-limit errors
+            retryable_errors = [
+                "503",
+                "unavailable",
+                "high demand",
+                "429",
+                "resource exhausted",
+                "timeout",
+                "temporarily"
+            ]
+
+            if any(error in error_text for error in retryable_errors):
+
+                if attempt < max_retries - 1:
+
+                    wait_time = 2 ** attempt
+
+                    time.sleep(wait_time)
+
+                    continue
+
+            raise last_error
+
+    raise last_error
+def get_gemini_response(prompt):
+    """
+    Backward-compatible wrapper for older WEAVE-AI services.
+    """
     return ask_ai(prompt)

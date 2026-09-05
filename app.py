@@ -14,12 +14,12 @@ from services.pdf_service import create_resume_report
 from services.ui_service import (
     load_css,
     hero_section,
-    metric_card
 )
 from services.resume_service import (
     extract_resume_text,
     analyze_resume
 )
+from services.resume_optimizer import optimize_resume
 from database.database import (
     create_tables,
     save_job,
@@ -82,6 +82,7 @@ with st.sidebar:
             "🏢 Company Research",
             "📚 Knowledge Base",
             "📄  Resume Analyzer",
+            "🎯 Resume Optimizer",
             "❤️ Saved Jobs",
             "ℹ️ About"
         ]
@@ -462,6 +463,427 @@ elif page == "📄  Resume Analyzer":
                             use_container_width=True
                        ) 
 
+# ==================================================
+# RESUME OPTIMIZER
+# ==================================================
+
+elif page == "🎯 Resume Optimizer":
+
+    st.title("🎯 AI Resume Optimization Engine")
+
+    st.write(
+        "Optimize your resume for a specific job using ATS analysis, "
+        "keyword optimization, skills-gap analysis, tailored resume "
+        "suggestions, and LinkedIn optimization."
+    )
+
+    st.divider()
+
+    # Resume input
+    st.subheader("📄 Resume")
+
+    optimizer_file = st.file_uploader(
+        "Upload your Resume",
+        type=["pdf", "docx"],
+        key="optimizer_resume"
+    )
+
+    # Job description
+    st.subheader("💼 Target Job")
+
+    job_description = st.text_area(
+        "Paste the Job Description",
+        height=250,
+        placeholder=(
+            "Paste the complete job description here..."
+        )
+    )
+
+    if st.button(
+        "🚀 Optimize My Resume",
+        use_container_width=True
+    ):
+
+        if optimizer_file is None:
+
+            st.warning(
+                "Please paste the complete job description "
+                "(at least 100 characters) for accurate ATS optimization."
+            )
+
+        elif not job_description.strip():
+
+            st.warning(
+                "Please paste the target job description."
+            )
+
+        else:
+
+            with st.spinner(
+                "WEAVE AI is optimizing your resume..."
+            ):
+
+                try:
+
+                    resume_text = extract_resume_text(
+                        optimizer_file
+                    )
+
+                    if not resume_text.strip():
+
+                        st.error(
+                            "Could not extract text from the uploaded resume."
+                        )
+
+                    else:
+
+                        result = optimize_resume(
+                            resume_text,
+                            job_description
+                        )
+
+                        st.session_state.optimizer_result = result
+
+                        st.success(
+                            "Resume optimization completed successfully!"
+                        )
+
+                except Exception as e:
+
+                    st.error(
+                        "Something went wrong while optimizing the resume."
+                    )
+
+                    st.caption(
+                        f"Technical details: {str(e)}"
+                    )
+
+    # Display result
+    if "optimizer_result" in st.session_state:
+
+        result = st.session_state.optimizer_result
+
+        st.divider()
+
+        # ------------------------------------------
+        # ATS SCORE
+        # ------------------------------------------
+
+        st.subheader("📊 ATS Compatibility Score")
+
+        ats_score = result.get("ats_score", 0)
+
+        st.progress(
+            max(0, min(100, ats_score)) / 100
+        )
+
+        col1, col2 = st.columns(2)
+
+        with col1:
+
+            st.metric(
+                "ATS Score",
+                f"{ats_score}%"
+            )
+
+        with col2:
+
+            if ats_score >= 80:
+
+                st.success(
+                    "🟢 Excellent ATS Compatibility"
+                )
+
+            elif ats_score >= 60:
+
+                st.warning(
+                    "🟡 Good ATS Compatibility"
+                )
+
+            else:
+
+                st.error(
+                    "🔴 Needs Optimization"
+                )
+
+        # ------------------------------------------
+        # ATS ANALYSIS
+        # ------------------------------------------
+
+        st.divider()
+
+        st.subheader("🔎 ATS Analysis")
+
+        for point in result.get(
+            "ats_analysis",
+            []
+        ):
+
+            st.info(point)
+
+        # ------------------------------------------
+        # KEYWORDS
+        # ------------------------------------------
+
+        st.divider()
+
+        st.subheader("🔑 Keyword Optimization")
+
+        col1, col2 = st.columns(2)
+
+        with col1:
+
+            st.markdown("### ✅ Matching Keywords")
+
+            for keyword in result.get(
+                "matching_keywords",
+                []
+            ):
+
+                st.success(keyword)
+
+        with col2:
+
+            st.markdown("### ❌ Missing Keywords")
+
+            for keyword in result.get(
+                "missing_keywords",
+                []
+            ):
+
+                st.error(keyword)
+
+        st.markdown("### 💡 Keyword Recommendations")
+
+        for recommendation in result.get(
+            "keyword_recommendations",
+            []
+        ):
+
+            st.info(recommendation)
+
+        # ------------------------------------------
+        # SKILLS GAP
+        # ------------------------------------------
+
+        st.divider()
+
+        st.subheader("🧩 Skills Gap Analysis")
+
+        for gap in result.get(
+            "skills_gap",
+            []
+        ):
+
+            skill = gap.get(
+                "skill",
+                "Unknown skill"
+            )
+
+            importance = gap.get(
+                "importance",
+                "Medium"
+            )
+
+            reason = gap.get(
+                "reason",
+                ""
+            )
+
+            with st.container():
+
+                st.markdown(
+                    f"### {skill}"
+                )
+
+                st.write(
+                    f"**Importance:** {importance}"
+                )
+
+                st.write(reason)
+
+        # ------------------------------------------
+        # LEARNING RECOMMENDATIONS
+        # ------------------------------------------
+
+        st.divider()
+
+        st.subheader(
+            "📚 Learning Recommendations"
+        )
+
+        for learning in result.get(
+            "learning_recommendations",
+            []
+        ):
+
+            skill = learning.get(
+                "skill",
+                ""
+            )
+
+            resource_type = learning.get(
+                "resource_type",
+                ""
+            )
+
+            recommendation = learning.get(
+                "recommendation",
+                ""
+            )
+
+            st.markdown(
+                f"### 🎓 {skill}"
+            )
+
+            st.write(
+                f"**Recommended approach:** {resource_type}"
+            )
+
+            st.info(
+                recommendation
+            )
+
+        # ------------------------------------------
+        # RESUME IMPROVEMENTS
+        # ------------------------------------------
+
+        st.divider()
+
+        st.subheader(
+            "📝 Resume Improvements"
+        )
+
+        for improvement in result.get(
+            "resume_improvements",
+            []
+        ):
+
+            st.info(improvement)
+
+        # ------------------------------------------
+        # TAILORED RESUME
+        # ------------------------------------------
+
+        st.divider()
+
+        st.subheader(
+            "🎯 Tailored Resume Suggestions"
+        )
+
+        tailored = result.get(
+            "tailored_resume",
+            {}
+        )
+
+        st.markdown(
+            "### Professional Summary"
+        )
+
+        st.write(
+            tailored.get(
+                "professional_summary",
+                ""
+            )
+        )
+
+        st.markdown(
+            "### Key Skills"
+        )
+
+        for skill in tailored.get(
+            "key_skills",
+            []
+        ):
+
+            st.success(skill)
+
+        st.markdown(
+            "### Experience Improvements"
+        )
+
+        for bullet in tailored.get(
+            "experience_improvements",
+            []
+        ):
+
+            st.info(bullet)
+
+        # ------------------------------------------
+        # LINKEDIN
+        # ------------------------------------------
+
+        st.divider()
+
+        st.subheader(
+            "💼 LinkedIn Optimization"
+        )
+
+        linkedin = result.get(
+            "linkedin_optimization",
+            {}
+        )
+
+        st.markdown(
+            "### 🔥 Recommended Headline"
+        )
+
+        st.code(
+            linkedin.get(
+                "headline",
+                ""
+            )
+        )
+
+        st.markdown(
+            "### 👤 About Section"
+        )
+
+        st.write(
+            linkedin.get(
+                "about_section",
+                ""
+            )
+        )
+
+        st.markdown(
+            "### 🛠️ Skills to Add"
+        )
+
+        for skill in linkedin.get(
+            "skills_to_add",
+            []
+        ):
+
+            st.success(skill)
+
+        st.markdown(
+            "### 💡 Profile Tips"
+        )
+
+        for tip in linkedin.get(
+            "profile_tips",
+            []
+        ):
+
+            st.info(tip)
+
+        # ------------------------------------------
+        # FINAL RECOMMENDATION
+        # ------------------------------------------
+
+        st.divider()
+
+        st.subheader(
+            "🏆 Final Recommendation"
+        )
+
+        st.success(
+            result.get(
+                "final_recommendation",
+                ""
+            )
+        )
 
 # ==================================================
 # ABOUT
